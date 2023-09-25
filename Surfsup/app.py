@@ -16,12 +16,13 @@ from flask import Flask, jsonify
 engine=create_engine("sqlite:///hawaii.sqlite")
 
 # reflect an existing database into a new model
-Base=
+Base=automap_base()
 # reflect the tables
-Base.prepare(   =engine)
+Base.prepare(autoload_with=engine)
 
 # Save references to each table
-
+Measurement = Base.classes.measurement
+Station = Base.classes.station
 
 # Create our session (link) from Python to the DB
 session = Session(engine)
