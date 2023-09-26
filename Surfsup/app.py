@@ -37,5 +37,47 @@ app=Flask(_name_)
 #################################################
 # Flask Routes
 #################################################
-@app,route("/")
+@app.route("/")
 def home():
+    """List all available api routes."""
+    return (
+        f"Available Routes:<br/>"
+        f"/api/v1.0/precipitation"
+        f"/api/v1.0/stations"
+        f"/api/v1.0/tobs"
+    )
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    session.close()
+
+    return jsonify(all_names)
+
+
+@app.route("/api/v1.0/stations")
+def stations():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+     session.close()
+
+    return jsonify(all_names)
+
+@app.route("/api/v1.0/tobs")
+def tobs():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+     session.close()
+
+    return jsonify(all_names)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+    
+
+
